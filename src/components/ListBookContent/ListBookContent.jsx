@@ -1,14 +1,12 @@
 import React, {useEffect} from 'react'
-import { connect, useSelector, useStore } from 'react-redux'
-import { useDispatch } from 'react-redux'
+import { connect } from 'react-redux'
 import { fetchingBooks } from '../redux/action/action'
 import Book  from './Book'
 
 function ListBookContent(props) {
-  const dispatch = useDispatch() 
   useEffect(() => {
       props.fetchingBooks()
-  }, [dispatch])
+  }, [])
   const books = props.books
   return(
     <div>
@@ -24,7 +22,7 @@ function ListBookContent(props) {
           {books.map((book) => {
             return (book.shelf === "currentlyReading") ? (
                   <li key={book.id}>
-                  <Book book={book}/>
+                  <Book book={book} books={books}/>
                 </li>
               
               ) : undefined })}
@@ -39,7 +37,7 @@ function ListBookContent(props) {
           {books.map((book) => {
             return (book.shelf === "wantToRead") ? (
                   <li key={book.id}>
-                  <Book book={book}/>
+                  <Book book={book} books={books}/>
                 </li>
               
               ) : undefined })}
@@ -53,7 +51,7 @@ function ListBookContent(props) {
           {books.map((book) => {
             return (book.shelf === "read") ? (
                   <li key={book.id}>
-                  <Book book={book}/>
+                  <Book book={book} books={books}/>
                 </li>
               
               ) : undefined })}

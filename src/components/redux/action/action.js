@@ -1,6 +1,19 @@
 import { getAll } from "../../../BooksAPI"
-
-const URL = "https://jsonplaceholder.typicode.com/posts" 
+export function searchBooks(query, books){
+   return {
+      type: "SEARCH_BOOKS",
+      query: query,
+      books: books
+   }
+}
+export function updateShelf(id, shelf, books) {
+    return {
+        type: "UPDATE_SHELF",
+        books: books,
+        book: id,
+        shelf: shelf
+    }
+}
 function fetchedBooks(books) {
    return { type: "FETCHED_BOOKS", books }
 } 
